@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+
+  collegecontainer:
+    image: college
+    ports:
+      - "5001:8080"
+    networks:
+      - cnet
+    links:
+      - "mymongo:mongo"
+  mymongo:
+    image: mongo
+    volumes:
+      - collegedb:/data/db
+    networks:
+      - cnet
+networks:
+  cnet:
+    external: true
+    name: cnet
+volumes:
+  collegedb:
+    external: true
+    name: collegedb

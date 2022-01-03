@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+
+  studentcontainer:
+    image: student
+    ports:
+      - "5001:8081"
+    networks:
+      - snet
+    links:
+      - "mymongo:mongo"
+  mymongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - studentdb:/data/db
+    networks:
+      - snet
+networks:
+  snet:
+volumes:
+  studentdb:
